@@ -1,16 +1,8 @@
 package com.library.service;
 
-import com.library.repository.BookRepository;
-
 public class BookService {
 
-    private BookRepository bookRepository;
-
-    public void setBookRepository(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
-
-    public void showBook() {
-        System.out.println(bookRepository.getBookDetails());
+    public void testService() {
+        System.out.println("BookService bean created successfully without DI.");
     }
 }
