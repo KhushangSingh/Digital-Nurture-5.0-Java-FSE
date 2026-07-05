@@ -1,5 +1,7 @@
 package com.cognizant.spring_learn_handson4;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -15,14 +17,19 @@ public class SpringLearnHandson4Application {
     public static void main(String[] args) {
         SpringApplication.run(SpringLearnHandson4Application.class, args);
 
-        displayCountry();
+        // Invoke the updated method to display the country list on startup
+        displayCountries();
     }
 
-    public static void displayCountry() {
+    public static void displayCountries() {
+        // Read the spring configuration file
         ApplicationContext context = new ClassPathXmlApplicationContext("country.xml");
-
-        Country country = context.getBean("country", Country.class);
-
-        LOGGER.debug("Country : {}", country.toString());
+        
+        // Retrieve the new list bean instead of the old single bean
+        @SuppressWarnings("unchecked")
+        ArrayList<Country> countries = (ArrayList<Country>) context.getBean("countryList");
+        
+        // Display the list using the debug logger
+        LOGGER.debug("Countries loaded from XML : {}", countries);
     }
 }
