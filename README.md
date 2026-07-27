@@ -1,6 +1,6 @@
 # Digital-Nurture-5.0-Java-FSE
 
-This repository tracks my progress through the **Java Full Stack Engineer (FSE)** curriculum, focusing on the mandatory hands-on assignments spanning Weeks 1 through 4. 
+This repository tracks my progress through the **Java Full Stack Engineer (FSE)** curriculum, focusing on the mandatory hands-on assignments spanning Weeks 1 through 7. 
 
 | Week | Topic / Skill Area | Source File | Mandatory Hands-on Tasks |
 | :--- | :--- | :--- | :--- |
@@ -14,5 +14,6 @@ This repository tracks my progress through the **Java Full Stack Engineer (FSE)*
 | **Week 3** | **Spring REST using Spring Boot 3** | `1. spring-rest-handson`<br>`2. spring-rest-handson`<br>`5. JWT-handson` | <ul><li>Create a Spring Web Project using Maven</li><li>Spring Core – Load Country from Spring Configuration XML</li><li>Hello World RESTful Web Service</li><li>REST - Country Web Service</li><li>REST - Get country based on country code</li><li>Create authentication service that returns JWT</li></ul> |
 | **Week 4** | **Code Quality and SonarQube** | *Conceptual / Tooling* | <ul><li>*No specific mandatory coding tasks provided in the tracker; focused on repository scanning.*</li></ul> |
 | **Week 4** | **Microservices with Spring Boot 3 & Spring Cloud** | `2. Microservices with API gateway` | <ul><li>Creating Microservices for account and loan</li></ul> |
-
-> **Note on Week 4:** While not explicitly listed as a mandatory tracker task, the **"Create Eureka Discovery Server and register microservices"** hands-on is closely tied to the Week 4 Microservices module and is heavily recommended to complete the ecosystem.
+| **Week 5** | **Angular / React** | `1. ReactJS-HOL` to `5. ReactJS-HOL`<br>`Angular Hands-on` | <ul><li>Hands-on in this document</li></ul> |
+| **Week 6** | **Angular / React, GIT, CI/CD** | `9. ReactJS-HOL` to `13. ReactJS-HOL`<br>`1. Git-HOL` to `5. Git-HOL` | <ul><li>Hands-on in this document</li></ul> |
+| **Week 7** | **DevOps, Docker, Cloud and GenAI fundamentals** | *Conceptual / Tooling* | <ul><li>*No specific mandatory coding tasks provided in the tracker.*</li></ul> |
