@@ -1,0 +1,36 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.title {
+  color: red;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  width: 100px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.form-group input {
+  width: 200px;
+}
+
+.submit-btn {
+  margin-top: 10px;
+}
