@@ -1,0 +1,30 @@
+.course-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  transition: height 0.3s;
+}
+.card--enrolled {
+  background-color: #f0f8ff;
+}
+.card--full {
+  font-weight: bold;
+}
+.expanded {
+  height: auto;
+  min-height: 150px;
+}
+.badge {
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: white;
+  margin-right: 10px;
+}
+.badge-green { background-color: green; }
+.badge-red { background-color: red; }
+.badge-grey { background-color: grey; }
+.details {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #ccc;
+}
