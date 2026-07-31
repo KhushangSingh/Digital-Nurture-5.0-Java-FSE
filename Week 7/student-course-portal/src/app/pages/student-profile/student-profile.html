@@ -1,1 +1,8 @@
-<p>student-profile works!</p>
+<h2>Student Profile</h2>
+<h3>Enrolled Courses</h3>
+<ul>
+  <li *ngFor="let course of enrolledCourses">
+    {{ course.name }} ({{ course.code }}) - Credits: {{ course.credits }}
+  </li>
+</ul>
+<p *ngIf="enrolledCourses.length === 0">You are not enrolled in any courses.</p>

@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from
 import { CommonModule } from '@angular/common';
 import { Highlight } from '../../directives/highlight';
 import { CreditLabelPipe } from '../../pipes/credit-label-pipe';
+import { Course } from '../../models/course.model';
+import { EnrollmentService } from '../../services/enrollment';
 
 @Component({
   selector: 'app-course-card',
@@ -10,19 +12,30 @@ import { CreditLabelPipe } from '../../pipes/credit-label-pipe';
   styleUrl: './course-card.css'
 })
 export class CourseCard implements OnChanges {
-  @Input() course!: { id: number, name: string, code: string, credits: number, gradeStatus: string, enrolled?: boolean };
+  @Input() course!: Course;
   @Output() enrollRequested = new EventEmitter<number>();
   
   isExpanded = false;
+
+  constructor(public enrollmentService: EnrollmentService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('Course changed:', changes['course']?.previousValue, changes['course']?.currentValue);
   }
 
+  toggleEnroll() {
+    if (this.enrollmentService.isEnrolled(this.course.id)) {
+      this.enrollmentService.unenroll(this.course.id);
+    } else {
+      this.enrollmentService.enroll(this.course.id);
+      this.enrollRequested.emit(this.course.id);
+    }
+  }
+
   // Getters keep templates clean
   get cardClasses() {
     return {
-      'card--enrolled': this.course.enrolled,
+      'card--enrolled': this.enrollmentService.isEnrolled(this.course.id),
       'card--full': this.course.credits >= 4,
       'expanded': this.isExpanded
     };

@@ -8,7 +8,9 @@
     <span *ngSwitchDefault class="badge badge-grey">Pending</span>
   </ng-container>
 
-  <button (click)="enrollRequested.emit(course.id)">Enroll</button>
+  <button (click)="toggleEnroll()">
+    {{ enrollmentService.isEnrolled(course.id) ? 'Unenroll' : 'Enroll' }}
+  </button>
   <button (click)="isExpanded = !isExpanded">Show Details</button>
 
   <div *ngIf="isExpanded" class="details">

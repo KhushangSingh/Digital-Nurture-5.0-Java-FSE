@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CourseService } from '../../services/course';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -12,17 +14,26 @@ export class Home implements OnInit, OnDestroy {
   isPortalActive = true;
   message = '';
   searchTerm = '';
+  coursesAvailable = 0;
+  private courseSub!: Subscription;
 
-  // [property] (one-way, component -> DOM) vs [(ngModel)] (two-way, DOM <-> component)
+  constructor(private courseService: CourseService) {}
+
   onEnrollClick() {
     this.message = 'Enrollment opened!';
   }
 
   ngOnInit() {
+    this.courseSub = this.courseService.getCourses().subscribe(courses => {
+      this.coursesAvailable = courses.length;
+    });
     console.log('HomeComponent initialised — courses loaded');
   }
 
   ngOnDestroy() {
+    if (this.courseSub) {
+      this.courseSub.unsubscribe();
+    }
     console.log('HomeComponent destroyed');
   }
 }

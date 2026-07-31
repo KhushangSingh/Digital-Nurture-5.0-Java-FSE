@@ -1,38 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { CourseCard } from '../../components/course-card/course-card';
+import { Course } from '../../models/course.model';
+import { FormsModule } from '@angular/forms';
+import * as CourseActions from '../../store/course.actions';
+import { selectAllCourses, selectCourseLoadingStatus, selectCourseError } from '../../store/course.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-course-list',
-  imports: [CommonModule, CourseCard],
+  imports: [CommonModule, CourseCard, FormsModule],
   templateUrl: './course-list.html',
   styleUrl: './course-list.css'
 })
 export class CourseList implements OnInit {
-  isLoading = true;
-  courses = [
-    { id: 1, name: 'Angular Basics', code: 'CS101', credits: 3, gradeStatus: 'passed', enrolled: false },
-    { id: 2, name: 'Advanced React', code: 'CS201', credits: 4, gradeStatus: 'pending', enrolled: false },
-    { id: 3, name: 'Node.js Backend', code: 'CS301', credits: 4, gradeStatus: 'failed', enrolled: false },
-    { id: 4, name: 'Cloud Native', code: 'CS401', credits: 2, gradeStatus: 'pending', enrolled: false },
-    { id: 5, name: 'Machine Learning', code: 'CS501', credits: 5, gradeStatus: 'passed', enrolled: false },
-  ];
+  courses$!: Observable<Course[]>;
+  isLoading$!: Observable<string>;
+  errorMessage$!: Observable<string | null>;
+  
   selectedCourseId: number | null = null;
+  searchTerm = '';
+
+  constructor(
+    private store: Store,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.courses$ = this.store.select(selectAllCourses);
+    this.isLoading$ = this.store.select(selectCourseLoadingStatus);
+    this.errorMessage$ = this.store.select(selectCourseError);
+  }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1500);
+    this.searchTerm = this.route.snapshot.queryParamMap.get('search') || '';
+    this.store.dispatch(CourseActions.loadCourses());
+  }
+
+  onSearchChange() {
+    if (this.searchTerm) {
+      this.router.navigate(['courses'], { queryParams: { search: this.searchTerm } });
+    } else {
+      this.router.navigate(['courses']);
+    }
   }
 
   onEnroll(courseId: number) {
     console.log('Enrolling in course: ' + courseId);
     this.selectedCourseId = courseId;
-    const course = this.courses.find(c => c.id === courseId);
-    if (course) course.enrolled = true;
   }
 
-  // trackBy improves performance by only updating changed items in DOM
+  viewDetails(courseId: number) {
+    this.router.navigate(['courses', courseId]);
+  }
+
   trackByCourseId(index: number, course: any) {
     return course.id;
   }

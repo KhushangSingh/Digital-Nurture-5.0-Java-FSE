@@ -1,0 +1,11 @@
+{
+  "courses": [
+    { "id": 1, "name": "Data Structures", "code": "CS101", "credits": 4, "gradeStatus": "passed" },
+    { "id": 2, "name": "Algorithms", "code": "CS102", "credits": 3, "gradeStatus": "failed" },
+    { "id": 3, "name": "Web Dev", "code": "CS103", "credits": 2, "gradeStatus": "pending" },
+    { "id": 4, "name": "Database", "code": "CS104", "credits": 0, "gradeStatus": "passed" },
+    { "id": 5, "name": "AI", "code": "CS105", "credits": 3, "gradeStatus": "pending" }
+  ],
+  "students": [],
+  "enrollments": []
+}
